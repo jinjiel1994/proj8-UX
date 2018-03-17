@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block body %}
+<br></br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+    <form method="POST" action="{{ url_for('login') }}">
+    {{ form.csrf_token }}
+    {{ form.username.label }}
+    {{ form.username }}
+    <ul>
+    {% for error in form.username.errors %}
+        <li style="color:red;">{{ error }}</li>
+    {% endfor %}
+    </ul>
+    {{ form.csrf_token }}
+    {{ form.password.label }}
+    {{ form.password }}
+    {% for error in form.password.errors %}
+    <ul>
+        <li style="color:red;">{{ error }}</li>
+    {% endfor %}
+    </ul>
+        <br></br>
+    {{ form.remember.label }}
+    {{ form.remember }}
+    <button type="submit" class="btn btn-primary btn-block">Log In</button>
+    </form>
+            <br>
+            <div>
+                Don't have an account? <a href="{{ url_for('register_page') }}">Sign up here</a>.
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
